@@ -1,5 +1,5 @@
 # copy_file_to_another_repo_action
-This GitHub Action copies a file from the current repository to a location in another repository
+This GitHub Action copies contents of a directory to a location in another repository.
 
 # Example Workflow
     name: Push File
@@ -14,11 +14,11 @@ This GitHub Action copies a file from the current repository to a location in an
           uses: actions/checkout@v2
 
         - name: Pushes test file
-          uses: dmnemec/copy_file_to_another_repo_action@main
+          uses: a50ra/copy_file_to_another_repo_action@main
           env:
             API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           with:
-            source_file: 'test2.md'
+            source_directory: 'folder1'
             destination_repo: 'dmnemec/release-test'
             destination_folder: 'test-dir'
             user_email: 'example@email.com'
@@ -29,7 +29,7 @@ This GitHub Action copies a file from the current repository to a location in an
 
 The `API_TOKEN_GITHUB` needs to be set in the `Secrets` section of your repository options. You can retrieve the `API_TOKEN_GITHUB` [here](https://github.com/settings/tokens) (set the `repo` permissions).
 
-* source_file: The file or directory to be moved. Uses the same syntax as the `cp` command. Incude the path for any files not in the repositories root directory.
+* source_directory: The directory of contents to be moved. Uses the same syntax as the `cp` command. Include the path for any files not in the repositories root directory.
 * destination_repo: The repository to place the file or directory in.
 * destination_folder: [optional] The folder in the destination repository to place the file in, if not the root directory.
 * user_email: The GitHub user email associated with the API token secret.
